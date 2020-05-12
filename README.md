@@ -1,2 +1,2 @@
 # Scripts
-dns测速
+dns相关
