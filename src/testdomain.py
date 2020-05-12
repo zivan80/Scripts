@@ -55,7 +55,7 @@ class DNS_Test:
 
 
         best_delay = min(best.values()) #取字典value中最小的延迟
-        best_dns = ''.join([k for k,v in best.items() if v ==min(best.values()) ])#取字典中最小延迟的dns名称，强转str
+        best_dns = ''.join([k for k,v in best.items() if v == best_delay ])#取字典中最小延迟的dns名称
         self.__print_line('5次结果为：{0[0]} ms, {0[1]} ms, {0[2]} ms, {0[3]} ms, {0[4]} ms'.format(self.score)  )
         print('⭐本次测试最快的DNS为：{}:{} 延迟{}毫秒'.format(best_dns,
                                                  self.dns_list[best_dns],
