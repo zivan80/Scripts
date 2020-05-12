@@ -32,10 +32,10 @@ class DNS_Test:
         #用os执行
         count = 0#计数器
         self.score = []#跑分池
-        while count < 5:#取10次，算平均值
+        while count < 5:  # 取5次，算平均值
             dig_resp = popen(dig_cmd)
-            dig_delay_line = dig_resp.readlines()[-5]#取到需要的内容，倒数第5行
-            dig_delay = dig_delay_line.split()[3]#切字符串，只取数值
+            dig_delay_line = dig_resp.readlines()[-5]  # 取到需要的内容，倒数第5行
+            dig_delay = dig_delay_line.split()[3]  # 切字符串，只取数值
             self.score.append(int(dig_delay))
             count += 1
 
@@ -50,13 +50,13 @@ class DNS_Test:
         self.__print_line('对:{}进行测试'.format(domain))
         for dns in self.dns_list:
             d,u,delay = self.__query_delay(self.dns_list[dns],domain)
-            print('通过{}:{} 测试 {} 平均 {} 毫秒' .format(dns,d,u,delay) )
+            print('通过{}:{} 测试 {} 5次平均 {} 毫秒'.format(dns, d, u, delay))
             best[dns] = delay#记录一下结果，取最佳dns用
-
+            self.__print_line('5次结果为：{0[0]} ms, {0[1]} ms, {0[2]} ms, {0[3]} ms, {0[4]} ms'.format(self.score))
 
         best_delay = min(best.values()) #取字典value中最小的延迟
         best_dns = ''.join([k for k,v in best.items() if v == best_delay ])#取字典中最小延迟的dns名称
-        self.__print_line('5次结果为：{0[0]} ms, {0[1]} ms, {0[2]} ms, {0[3]} ms, {0[4]} ms'.format(self.score)  )
+
         print('⭐本次测试最快的DNS为：{}:{} 延迟{}毫秒'.format(best_dns,
                                                  self.dns_list[best_dns],
                                                  best_delay)
