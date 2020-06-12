@@ -1,2 +1,7 @@
 # Scripts
-dns相关
+
+nslk图:      
+![image](./images/nslk.jpg)
+
+testdomain图:
+![image](./images/testdomain.jpg)
